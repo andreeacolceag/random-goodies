@@ -6,6 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-server": "rimraf ./dist/server && tsc -p server/tsconfig.json",
+    "start-server": "tsc -p server/tsconfig.json --watch | nodemon dist/server/server.js --watch dist/server",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,8 +23,17 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "@types/express": "^4.0.37",
+    "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
+    "express": "^4.16.1",
+    "express-http-proxy": "^1.0.7",
+    "express-session": "^1.15.6",
+    "path": "^0.12.7",
+    "request": "^2.83.0",
     "rxjs": "^5.4.2",
+    "ts-express-decorators": "^2.4.4",
+    "ts-httpexceptions": "^2.2.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
