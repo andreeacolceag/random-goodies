@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-upload',
@@ -12,7 +13,7 @@ export class UploadComponent implements OnInit {
   myFile: File;
 
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, private httpClient: HttpClient) { }
 
   ngOnInit() {
   }
@@ -39,12 +40,8 @@ export class UploadComponent implements OnInit {
     console.log(body);                // {name: "dasd", imageData: FormData}
     console.log(body.imageData);      // FormData {}
 
-   /* this._http.post("http://localhost:8080/users/upload", body)
-			.map((response: Response) => response.json())
-			.subscribe(
-        (data) => console.log(data),      // {message: "img uploaded", name: "correct input"}
-        (error) => console.log(error)
-      );*/
+    this.httpClient.post("http://localhost:8000/api/upload", {smth: "xyz"}, {responseType: "text"}).subscribe((response) => {console.log(response);});
+
   };
 
 }
