@@ -40,7 +40,7 @@ export class UploadComponent implements OnInit {
     console.log(body);                // {name: "dasd", imageData: FormData}
     console.log(body.imageData);      // FormData {}
 
-    this.httpClient.post("http://localhost:8000/api/upload", {smth: "xyz"}, {responseType: "text"}).subscribe((response) => {console.log(response);});
+    this.httpClient.post("http://localhost:8000/api/file", formData).subscribe((response) => {console.log(response);});
 
   };
 

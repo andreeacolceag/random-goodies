@@ -1,3 +1,5 @@
+import * as Express from 'express';
+
 import {ServerLoader, GlobalAcceptMimesMiddleware, ServerSettings} from 'ts-express-decorators';
 import * as Path from 'path';
 
@@ -5,10 +7,11 @@ import {environment} from './environments/environment';
 
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const rootDir = Path.resolve(__dirname);
 
 @ServerSettings({
-	rootDir: Path.resolve(__dirname),
-	acceptMimes: ["application/json"]
+	rootDir,
+	uploadDir: `${rootDir}/custom-dir`,
 })
 export class Server extends ServerLoader {
 
@@ -48,9 +51,6 @@ export class Server extends ServerLoader {
 			.use(compress({}))
 			.use(methodOverride())
 			.use(bodyParser.json())
-			.use("/api/upload", (req, res, next) => {
-				res.header("Access-Control-Allow-Origin", "*");
-			})
 			.use(bodyParser.urlencoded({
 				extended: true
 			}));
